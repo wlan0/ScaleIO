@@ -7,7 +7,6 @@ ENV TERM      linux
 ADD EMC-ScaleIO-sds-1.32-3455.5.el7.x86_64.rpm / 
 
 ADD run_sds.sh /
-ADD run_sds_and_configure.sh /
 
 RUN yum -y update;yum clean all
 RUN yum -y install tar wget numactl libaio mutt python python-paramiko java-1.6.0-openjdk vi which

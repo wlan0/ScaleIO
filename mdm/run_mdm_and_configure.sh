@@ -11,25 +11,19 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*;
 rm -f /lib/systemd/system/basic.target.wants/*;
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 
-if [[ -z "$SIZE" ]]; then
-        SIZE=100
-fi
-
-truncate -s ${SIZE}GB /device
-
 yum install -y curl net-tools
 
 STACK_NAME=$(curl https://rancher-metadata/latest/self/stack/name)
 
-FIRST_MDM_IP=${STACK_NAME}_mdm_1
-SECOND_MDM_IP=${STACK_NAME}_mdm_2
+FIRST_MDM_IP=${STACK_NAME}_mdm_and_configure_1
+SECOND_MDM_IP=${STACK_NAME}_mdm_1
 TB_IP=${STACK_NAME}_tb_1
 FIRST_SDS_IP=${STACK_NAME}_sds_1
 SECOND_SDS_IP=${STACK_NAME}_sds_2
-THIRD_SDS_IP=${STACK_NAME}_sds_configurer_1
+THIRD_SDS_IP=${STACK_NAME}_sds_3
 
-rpm -Uvh /EMC-ScaleIO-sds-1.32-3455.5.el7.x86_64.rpm
-systemctl enable sds.service
+rpm -Uvh /EMC-ScaleIO-mdm-1.32-3455.5.el7.x86_64.rpm
+systemctl enable mdm.service
 
 sleep 10
 scli --mdm --add_primary_mdm --primary_mdm_ip $FIRST_MDM_IP --accept_license

@@ -5,6 +5,8 @@ set +x
 umount /dev/shm
 mount -t tmpfs -o rw,nosuid,nodev,noexec,relatime,size=524288k shm /dev/shm
 
+sysctl -w kernel.shmmax=2147483648
+
 (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done);
 rm -f /lib/systemd/system/multi-user.target.wants/*;
 rm -f /etc/systemd/system/*.wants/*;

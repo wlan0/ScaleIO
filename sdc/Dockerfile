@@ -4,9 +4,9 @@ MAINTAINER "RANCHER LABS"
 ENV container docker
 ENV TERM      linux
 
-ADD EMC-ScaleIO-tb-1.32-3455.5.el7.x86_64.rpm / 
+ADD EMC-ScaleIO-sdc-1.32-3455.5.el7.x86_64.rpm / 
 
-ADD run_tb.sh /
+ADD run_sdc.sh /
 
 RUN yum -y update;yum clean all
 RUN yum -y install tar wget numactl libaio mutt python python-paramiko java-1.6.0-openjdk vi which
@@ -18,6 +18,6 @@ RUN yum install systemd net-tools redhat-lsb -y; yum clean all;
 
 VOLUME ["/sys/fs/cgroup"]
 
-ENTRYPOINT ["/run_tb.sh"]
+ENTRYPOINT ["/run_sdc.sh"]
 
 CMD ["/usr/sbin/init"]
