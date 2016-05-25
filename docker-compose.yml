@@ -1,0 +1,25 @@
+tb:
+  privileged: true
+  volumes:
+   - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  image: wlan0/tb
+
+sds:
+  privileged: true
+  volumes:
+   - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  image: wlan0/sds
+
+mdm:
+  privileged: true
+  volumes:
+   - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  image: wlan0/mdm
+
+primary-mdm:
+  privileged: true
+  volumes:
+   - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  image: wlan0/mdm
+  command: /usr/sbin/init
+  entrypoint: /run_mdm_and_configure.sh
