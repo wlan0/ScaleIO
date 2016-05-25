@@ -1,0 +1,12 @@
+[Unit]
+Description=Configure ScaleIO MDM
+Requires=mdm.service
+After=mdm.service
+
+[Service]
+Type=oneshot
+ExecStart=/configure-mdm.sh
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

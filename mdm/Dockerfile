@@ -8,6 +8,8 @@ ADD EMC-ScaleIO-mdm-1.32-3455.5.el7.x86_64.rpm /
 
 ADD run_mdm.sh /
 ADD run_mdm_and_configure.sh /
+ADD configure-mdm.sh /
+ADD configure-mdm.service /
 
 RUN yum -y update;yum clean all
 RUN yum -y install tar wget numactl libaio mutt python python-paramiko java-1.6.0-openjdk vi which
