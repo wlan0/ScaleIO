@@ -4,6 +4,9 @@ set +x
 
 STACK_NAME=$(curl http://rancher-metadata/latest/self/stack/name)
 
+sysctl vm.overcommit_memory=2
+echo "vm.overcommit_memory=2" >> /etc/sysctl.conf
+
 FIRST_SDS_IP=${STACK_NAME}_sds_1
 SECOND_SDS_IP=${STACK_NAME}_sds_2
 THIRD_SDS_IP=${STACK_NAME}_sds_3

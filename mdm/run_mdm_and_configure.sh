@@ -2,6 +2,9 @@
 
 set -x
 
+sysctl vm.overcommit_memory=2
+echo "vm.overcommit_memory=2" >> /etc/sysctl.conf
+
 umount /dev/shm
 mount -t tmpfs -o rw,nosuid,nodev,noexec,relatime,size=4294967296 shm /dev/shm
 
