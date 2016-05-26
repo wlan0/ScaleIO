@@ -9,6 +9,8 @@ FIRST_SDS_IP=${STACK_NAME}_sds_1
 SECOND_SDS_IP=${STACK_NAME}_sds_2
 THIRD_SDS_IP=${STACK_NAME}_sds_3
 
+until </dev/tcp/$SECOND_MDM_IP/9011 > /dev/null; do echo "waiting for secondary mdm..." && sleep 5 ; done
+
 sleep 10
 scli --mdm --add_primary_mdm --primary_mdm_ip $FIRST_MDM_IP --accept_license
 sleep 5

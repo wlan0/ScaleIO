@@ -2,6 +2,12 @@
 
 set +x
 
+STACK_NAME=$(curl http://rancher-metadata/latest/self/stack/name)
+
+TB_IP=${STACK_NAME}_tb_1
+
+until </dev/tcp/$TB_IP/9011 > /dev/null; do echo "waiting for tb...." && sleep 5 ; done
+
 (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done);
 rm -f /lib/systemd/system/multi-user.target.wants/*;
 rm -f /etc/systemd/system/*.wants/*;

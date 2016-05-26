@@ -2,6 +2,16 @@
 
 set +x
 
+STACK_NAME=$(curl http://rancher-metadata/latest/self/stack/name)
+
+FIRST_SDS_IP=${STACK_NAME}_sds_1
+SECOND_SDS_IP=${STACK_NAME}_sds_2
+THIRD_SDS_IP=${STACK_NAME}_sds_3
+
+until </dev/tcp/$FIRST_SDS_IP/7072 > /dev/null; do echo "waiting for sds1..." && sleep 5 ; done
+until </dev/tcp/$SECOND_SDS_IP/7072 > /dev/null; do echo "waiting for sds2..." && sleep 5 ; done
+until </dev/tcp/$THIRD_SDS_IP/7072 > /dev/null; do echo "waiting for sds3..." && sleep 5 ; done
+
 umount /dev/shm
 mount -t tmpfs -o rw,nosuid,nodev,noexec,relatime,size=4294967296 shm /dev/shm
 
