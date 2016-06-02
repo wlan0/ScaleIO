@@ -1,0 +1,10 @@
+[Unit]
+Description=Configure ScaleIO MDM
+
+[Service]
+Type=oneshot
+ExecStart=/configure-sdc.sh
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

@@ -5,6 +5,7 @@ ENV container docker
 ENV TERM      linux
 
 ADD EMC-ScaleIO-mdm-1.32-3455.5.el7.x86_64.rpm / 
+ADD EMC-ScaleIO-gateway-1.32-3455.5.noarch.rpm /
 
 ADD run_mdm.sh /
 ADD run_mdm_and_configure.sh /

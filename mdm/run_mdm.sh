@@ -6,6 +6,7 @@ STACK_NAME=$(curl http://rancher-metadata/latest/self/stack/name)
 
 sysctl vm.overcommit_memory=2
 echo "vm.overcommit_memory=2" >> /etc/sysctl.conf
+echo "kernel.shmmax=536870912" >> /etc/sysctl.conf
 
 FIRST_SDS_IP=${STACK_NAME}_sds_1
 SECOND_SDS_IP=${STACK_NAME}_sds_2
@@ -16,7 +17,7 @@ until </dev/tcp/$SECOND_SDS_IP/7072 > /dev/null; do echo "waiting for sds2..." &
 until </dev/tcp/$THIRD_SDS_IP/7072 > /dev/null; do echo "waiting for sds3..." && sleep 5 ; done
 
 umount /dev/shm
-mount -t tmpfs -o rw,nosuid,nodev,noexec,relatime,size=4294967296 shm /dev/shm
+mount -t tmpfs -o rw,nosuid,nodev,noexec,relatime,size=536870912 shm /dev/shm
 
 (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done);
 rm -f /lib/systemd/system/multi-user.target.wants/*;
