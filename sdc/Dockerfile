@@ -9,7 +9,6 @@ ADD EMC-ScaleIO-sdc-1.32-3455.5.el7.x86_64.rpm /
 ADD configure-sdc.service /
 ADD configure-sdc.sh /
 ADD run_sdc.sh /
-ADD rexray.service /
 ADD rexray.sh /
 
 RUN yum -y update;yum clean all

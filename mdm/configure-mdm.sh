@@ -13,8 +13,8 @@ THIRD_SDS_IP=${STACK_NAME}_sds_3
 
 until </dev/tcp/$SECOND_MDM_IP/9011 > /dev/null; do echo "waiting for secondary mdm..." && sleep 5 ; done
 
-FIRST_MDM_ACTUAL_IP=$(dig +short $(cat /stack_name)_primary-mdm_1)
-SECOND_MDM_ACTUAL_IP=$(dig +short $(cat /stack_name)_mdm_1)
+FIRST_MDM_ACTUAL_IP=$(dig +short ${STACK_NAME}_primary-mdm_1)
+SECOND_MDM_ACTUAL_IP=$(dig +short ${STACK_NAME}_mdm_1)
 
 rpm -Uvh EMC-ScaleIO-gateway-1.32-3455.5.noarch.rpm 
 

@@ -10,6 +10,13 @@ rexray:
   logLevel: info
   storageDrivers:
   - scaleio
+  modules:
+    default-docker:
+      type:     docker
+      desc:     The default docker module.
+      host:     unix:///etc/docker/plugins/rexray.sock
+      spec:     /etc/docker/plugins/rexray.spec
+      disabled: false
 scaleio:
   endpoint:             https://$(cat /stack_name)_primary-mdm_1:443/api
   insecure:		true
@@ -21,4 +28,4 @@ scaleio:
   thinOrThick:		ThinProvisioned
 EOF
 
-exec rexray start -f
+rexray start -l debug
