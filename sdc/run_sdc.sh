@@ -16,9 +16,6 @@ yum install -y curl net-tools initscripts bind-utils
 cp /configure-sdc.service /usr/lib/systemd/system/
 systemctl enable configure-sdc.service
 
-cp /rexray.service /usr/lib/systemd/system/
-systemctl enable rexray.service
-
 cd /
 touch stack_name
 echo $STACK_NAME > stack_name
