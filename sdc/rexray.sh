@@ -28,4 +28,4 @@ scaleio:
   thinOrThick:		ThinProvisioned
 EOF
 
-rexray start -l debug
+rexray start -l debug -f
